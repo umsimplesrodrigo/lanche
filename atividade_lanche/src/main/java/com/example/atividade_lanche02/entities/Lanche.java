@@ -1,8 +1,22 @@
 package com.example.atividade_lanche02.entities;
 
+import jakarta.persistence.*;
+
+@Entity
+@Table(name = "lanches")
 public class Lanche {
-    private String nome, img_url;
+    @Id
+    @Column(name = "id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private String nome;
+
+    @Column(name = "img_url")
+    private String img_url;
+
+    @Column(name = "preco")
     private double preco;
+
+    @Column(name = "codigo")
     private int codigo;
 
     public Lanche(String nome, String img_url, double preco, int codigo) {
