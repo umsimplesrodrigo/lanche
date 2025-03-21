@@ -15,13 +15,7 @@ public class LancheController {
     @Autowired
     public LancheController(LancheFacade lancheFacade) {
         this.lancheFacade = lancheFacade;
-        Lanche lanche1 = new Lanche("Lanche 1", "", 10.0, 1);
-        Lanche lanche2 = new Lanche("Lanche 2", "", 10.0, 1);
-        Lanche lanche3 = new Lanche("Lanche 3", "", 10.0, 1);
 
-        this.lancheFacade.cadastrar(lanche1);
-        this.lancheFacade.cadastrar(lanche2);
-        this.lancheFacade.cadastrar(lanche3);
     }
 
     @GetMapping("")

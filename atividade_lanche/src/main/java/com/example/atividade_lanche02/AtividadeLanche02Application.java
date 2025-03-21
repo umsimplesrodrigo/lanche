@@ -21,7 +21,7 @@ public class AtividadeLanche02Application {
 	public static LancheFacade lancheFacade;
 
 	private static void injectDependencies() {
-		lancheRepository = new LancheRepositoryMySqlImpl();
+		lancheRepository = new LancheRepositoryMySqlImpl(null);
 		lancheService = new LancheService();
 		lancheApplication = new LancheApplication(lancheRepository, lancheService);
 		lancheFacade = new LancheFacade(lancheApplication);
@@ -52,7 +52,7 @@ public class AtividadeLanche02Application {
                     System.out.println("URL da imagem:"); //... ou aqui
                     String img_url = System.console().readLine();
                     
-                    lancheFacade.cadastrar(new Lanche(nome, img_url, preco, codigo++));
+                    lancheFacade.cadastrar(new Lanche(codigo++, nome, img_url, preco));
                     System.out.println("Lanche cadastrado com sucesso\n");
                 }
                 case 2 -> {
@@ -68,7 +68,7 @@ public class AtividadeLanche02Application {
                         System.out.println("URL da img_url:");
                         String img_url = System.console().readLine();
                         
-                        lancheFacade.atualizar(cod, new Lanche(nome, img_url, preco, cod));
+                        lancheFacade.atualizar(cod, new Lanche(cod, nome, img_url, preco));
                         System.out.println("Lanche atualizado com sucesso\n");
                     }
                 }
@@ -89,7 +89,7 @@ public class AtividadeLanche02Application {
                     } else {
                         List<Lanche> lanches = lancheFacade.buscar();
                         for(Lanche l : lanches){
-                            System.out.println(l.getCodigo() + "\t\t" + l.getNome() + "\t\t" + l.getPreco() + "\n\n");
+                            System.out.println(l.getId() + "\t\t" + l.getNome() + "\t\t" + l.getPreco() + "\n\n");
                         }
                     }
                 }

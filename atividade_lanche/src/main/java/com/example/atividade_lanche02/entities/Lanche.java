@@ -8,22 +8,39 @@ public class Lanche {
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private String nome;
+    private int id;
 
     @Column(name = "img_url")
-    private String img_url;
+    private String imgUrl;
+
+    @Column(name = "nome")
+    private String nome;
 
     @Column(name = "preco")
     private double preco;
 
-    @Column(name = "codigo")
-    private int codigo;
+    public Lanche() {
+    }
 
-    public Lanche(String nome, String img_url, double preco, int codigo) {
+    public Lanche(String imgUrl, String nome, double preco) {
+        this.imgUrl = imgUrl;
         this.nome = nome;
-        this.img_url = img_url;
         this.preco = preco;
-        this.codigo = codigo;
+    }
+
+    public Lanche(int id, String nome, String imgUrl, double preco) {
+        this.id = id;
+        this.nome = nome;
+        this.imgUrl = imgUrl;
+        this.preco = preco;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getNome() {
@@ -34,12 +51,12 @@ public class Lanche {
         this.nome = nome;
     }
 
-    public String getImg_url() {
-        return img_url;
+    public String getImgUrl() {
+        return imgUrl;
     }
 
-    public void setImg_url(String img_url) {
-        this.img_url = img_url;
+    public void setImgUrl(String imgUrl) {
+        this.imgUrl = imgUrl;
     }
 
     public double getPreco() {
@@ -50,24 +67,17 @@ public class Lanche {
         this.preco = preco;
     }
 
-    public int getCodigo() {
-        return codigo;
-    }
-
-    public void setCodigo(int codigo) {
-        this.codigo = codigo;
-    }
-
     public double calcularLanche(int quantidade){
         return getPreco() * quantidade;
     }
 
     @Override
     public String toString() {
-        return "Lanche [nome=" + nome 
-            + ", img_url=" + img_url 
-            + ", preco=" + preco 
-            + ", codigo=" + codigo + "]";
+        return "Lanche{" +
+                "id=" + id +
+                ", imgUrl='" + imgUrl + '\'' +
+                ", nome='" + nome + '\'' +
+                ", preco=" + preco +
+                '}';
     }
-    
 }

@@ -33,14 +33,14 @@ public class LancheService {
     }
 
     public boolean save(Lanche lanche) {
-        Path path = Paths.get(lanche.getImg_url());
+        Path path = Paths.get(lanche.getImgUrl());
 
-        Path destinationPath = Paths.get(String.format("%s%d.%s", filePath, lanche.getCodigo(), getFileExtension(path)));
+        Path destinationPath = Paths.get(String.format("%s%d.%s", filePath, lanche.getId(), getFileExtension(path)));
 
         if (Files.exists(path)) {
             try {
                 Files.copy(path, destinationPath, StandardCopyOption.REPLACE_EXISTING);
-                lanche.setImg_url(destinationPath.toString());
+                lanche.setImgUrl(destinationPath.toString());
                 return true;
             } catch (IOException e) {
                 return false;
@@ -51,7 +51,7 @@ public class LancheService {
     }
 
     public boolean delete(Lanche Lanche) {
-        Path path = Paths.get(Lanche.getImg_url());
+        Path path = Paths.get(Lanche.getImgUrl());
 
         if (Files.exists(path)) {
             try {

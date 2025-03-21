@@ -8,14 +8,13 @@ import com.example.atividade_lanche02.entities.Lanche;
 import com.example.atividade_lanche02.interfaces.LancheRepository;
 import org.springframework.stereotype.Repository;
 
-
 public class LancheRepositoryImpl implements LancheRepository {
     private List<Lanche> lanches = new ArrayList<>();
 
     public Lanche searchByCode(int code) {
         Lanche lanche = lanches
             .stream()
-            .filter(p -> p.getCodigo() == code)
+            .filter(p -> p.getId() == code)
             .findFirst()
             .get();
         
@@ -31,14 +30,14 @@ public class LancheRepositoryImpl implements LancheRepository {
     }
 
     public void removeLanche(int code){
-        lanches.removeIf(p -> p.getCodigo() == code);
+        lanches.removeIf(p -> p.getId() == code);
     }
 
     public void updateLanche(int code, Lanche lanche){
         Lanche LancheInMemory = this.searchByCode(code);
 
         LancheInMemory.setNome(lanche.getNome());
-        LancheInMemory.setImg_url(lanche.getImg_url());
+        LancheInMemory.setImgUrl(lanche.getImgUrl());
         LancheInMemory.setPreco(lanche.getPreco());
     }
 
